@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact – PatientFlow</title>
+<link rel="stylesheet" href="/css/main.css">
+<script type="module" src="/js/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav-row">
+<a class="brand" href="/index.html"><span class="brand-mark">PF</span> PatientFlow</a>
+<nav class="site-nav" aria-label="Primary"><a href="/index.html">Home</a><a href="/pages/features.html">Features</a><a href="/pages/how-it-works.html">How It Works</a><a href="/pages/safety.html">Patient Safety</a><a href="/pages/faq.html">FAQ</a><a href="/pages/contact.html" class="active">Contact</a><a href="/pages/login.html">Log in</a></nav>
+</div></header>
+<main id="main" class="wrap section" style="max-width:720px">
+<div class="emergency-notice" role="alert"><strong>Emergency notice:</strong> If you believe you are experiencing a medical emergency, contact local emergency services immediately. Do not wait for an online assessment.</div>
+<h1>Contact</h1>
+<div class="card">
+<p><strong>City General Hospital</strong><br>Front-desk support: Mon–Sat, 8:00–18:00<br>Phone: +1 (555) 010-2030<br>Email: support@patientflow.local</p>
+<form id="contact-form" novalidate>
+<div class="form-grid"><div class="field"><label for="c-name">Name</label><input id="c-name" required><span class="field-error"></span></div>
+<div class="field"><label for="c-email">Email</label><input id="c-email" type="email" required><span class="field-error"></span></div>
+<div class="field full"><label for="c-msg">Message (do not include detailed medical history)</label><textarea id="c-msg" rows="4" required></textarea><span class="field-error"></span></div></div>
+<button class="btn btn-primary" type="submit" style="margin-top:12px">Send message</button>
+</form></div></main>
+<script>
+document.getElementById('contact-form').addEventListener('submit',(e)=>{e.preventDefault();
+const n=document.getElementById('c-name'),m=document.getElementById('c-email'),g=document.getElementById('c-msg');
+let ok=true;
+[[n,v=>v.trim()!==''],[m,v=>/.+@.+\..+/.test(v)],[g,v=>v.trim().length>=10]].forEach(([el,fn])=>{const good=fn(el.value);el.setAttribute('aria-invalid',good?'false':'true');el.closest('.field').querySelector('.field-error').textContent=good?'':'Please complete this field.';if(!good)ok=false;});
+if(!ok)return;
+e.target.innerHTML='<div class="alert alert-info"><strong>Message received.</strong> Our team will reply within two business days. For urgent needs, call the front desk.</div>';});
+</script>
+<footer class="site-footer"><div class="wrap"><div><strong style="color:#fff">PatientFlow</strong></div></div></footer>
+</body>
+</html>

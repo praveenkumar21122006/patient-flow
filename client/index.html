@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PatientFlow – Patient Intake &amp; Triage Assistant</title>
+<meta name="description" content="PatientFlow supports hospital intake and queue workflows with transparent suggested triage priorities. Decision support only — not a diagnostic device.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="stylesheet" href="/css/main.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<script type="module" src="/js/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav-row">
+    <a class="brand" href="/index.html"><span class="brand-mark" aria-hidden="true">PF</span> PatientFlow</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/index.html" class="active">Home</a>
+      <a href="/pages/features.html">Features</a>
+      <a href="/pages/how-it-works.html">How It Works</a>
+      <a href="/pages/safety.html">Patient Safety</a>
+      <a href="/pages/faq.html">FAQ</a>
+      <a href="/pages/contact.html">Contact</a>
+      <a href="/pages/login.html">Log in</a>
+      <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="small muted" style="margin:0">City General Hospital · Intake &amp; triage workflow support</p>
+        <h1>Calm, structured patient intake with transparent triage support</h1>
+        <p class="lead">PatientFlow collects intake information, symptoms, history, and vital signs, then suggests a priority level for trained staff to review. Every suggestion is labelled <strong>“Suggested Priority – Requires Clinical Review.”</strong></p>
+        <div class="emergency-notice" role="alert"><strong>Emergency notice:</strong> If you believe you are experiencing a medical emergency, contact local emergency services immediately. Do not wait for an online assessment.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="/pages/register.html">Start patient registration</a>
+          <a class="btn btn-outline" href="/pages/how-it-works.html">See how it works</a>
+          <a class="btn btn-outline" href="/app.html">Staff sign in</a>
+        </div>
+        <p class="small muted">Workflow support only. PatientFlow does not diagnose diseases, prescribe medication, or replace a qualified healthcare professional.</p>
+      </div>
+      <div class="card" aria-label="What the system does">
+        <h2 style="font-size:17px;margin-top:0">What happens to an intake?</h2>
+        <ol class="small" style="padding-left:18px;margin:0">
+          <li>Patient or reception submits a structured intake.</li>
+          <li>Nurse records vital signs; history is preserved.</li>
+          <li>Rule engine suggests Critical / Urgent / Moderate / Low / Unclassified with reasons.</li>
+          <li>A nurse or doctor confirms or overrides (reason required).</li>
+          <li>Patient joins a priority-ordered queue with token &amp; wait estimate.</li>
+        </ol>
+        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0">
+        <p class="small muted" style="margin:0">Demo thresholds are illustrative and require validation by clinical governance before any real-world use.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <h2>Designed for real hospital workflows</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Multi-step intake</h3><p class="muted small">Patient details, visit information, and consent review — with draft preservation and validation. Clinical staff record symptoms and red-flag screening during triage.</p></div>
+        <div class="card"><h3>Transparent triage</h3><p class="muted small">Every suggestion shows matched rules, risk indicators, score, and rule version. No black boxes, no fake machine-learning claims.</p></div>
+        <div class="card"><h3>Priority queue</h3><p class="muted small">Confirmed priority first, then escalation, then arrival time. Tokens, wait estimates, filters, and emergency escalation included.</p></div>
+      </div>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card"><h3>Role-based access</h3><p class="muted small">Patient, receptionist, nurse, doctor, and administrator views — enforced in the UI and on every API route.</p></div>
+        <div class="card"><h3>Audit &amp; reports</h3><p class="muted small">Immutable audit events, printable intake summaries, daily and workload reports with authorized CSV export.</p></div>
+        <div class="card"><h3>Safety by default</h3><p class="muted small">Secure cookies, rate-limited login, validated uploads, and notifications that never email full medical records.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="wrap grid-2">
+      <div>
+        <h2>Roles at a glance</h2>
+        <ul class="small">
+          <li><strong>Patients</strong> register, submit intake, track queue position and reviewed priority.</li>
+          <li><strong>Receptionists</strong> register arrivals, manage guest intakes, print tokens.</li>
+          <li><strong>Nurses</strong> record vitals, run and confirm triage, escalate emergencies.</li>
+          <li><strong>Doctors</strong> review escalations, add clinical notes, manage visit status.</li>
+          <li><strong>Administrators</strong> manage staff, departments, rules, audits, and exports.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Hospital workflow overview</h3>
+        <p class="small muted">PatientFlow supports structured intake, staff review, queue prioritization, and clear safety prompts across the care journey.</p>
+        <a class="btn btn-outline btn-sm" href="/pages/login.html">Go to login</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <h2>Additional capabilities</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Smart queue visibility</h3><p class="muted small">Track arrival order, waiting time, and recommended escalation paths for each intake in a clear priority queue.</p></div>
+        <div class="card"><h3>Clinical review trail</h3><p class="muted small">Every triage change is logged with rationale, staff identity, timestamps, and status history for accountability.</p></div>
+        <div class="card"><h3>Operational reporting</h3><p class="muted small">Review throughput, wait times, workflow bottlenecks, and staff workload in a format designed for daily operational use.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div><strong style="color:#fff">PatientFlow</strong><p class="small">Intake &amp; triage workflow support. Suggested priorities only — requires clinical review.</p></div>
+    <div><strong style="color:#fff">System</strong><br><a href="/pages/features.html">Features</a><br><a href="/pages/about.html">About</a><br><a href="/pages/safety.html">Patient Safety</a></div>
+    <div><strong style="color:#fff">Support</strong><br><a href="/pages/faq.html">FAQ</a><br><a href="/pages/contact.html">Contact</a><br><a href="/pages/how-it-works.html">How It Works</a></div>
+    <div><strong style="color:#fff">Legal</strong><br><a href="/pages/privacy.html">Privacy Policy</a><br><a href="/pages/terms.html">Terms of Use</a></div>
+  </div>
+</footer>
+</body>
+</html>

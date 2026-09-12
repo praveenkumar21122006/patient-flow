@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in – PatientFlow</title>
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav-row">
+<a class="brand" href="/index.html"><span class="brand-mark">PF</span> PatientFlow</a>
+<nav class="site-nav" aria-label="Primary"><a href="/index.html">Home</a><a href="/pages/register.html">Register</a></nav>
+</div></header>
+<main id="main" class="wrap section" style="max-width:520px">
+<div class="emergency-notice" role="alert"><strong>Emergency notice:</strong> If you believe you are experiencing a medical emergency, contact local emergency services immediately. Do not wait for an online assessment.</div>
+<div class="card">
+<h1 style="font-size:22px;margin-top:0">Log in</h1>
+<div id="expired" class="alert alert-warn" style="display:none;margin-bottom:12px">Your session expired. Please log in again.</div>
+<div id="form-error" class="alert alert-danger" style="display:none;margin-bottom:12px"></div>
+<form id="login-form" novalidate>
+<div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required><span class="field-error"></span></div>
+<div class="field" style="margin-top:10px"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required><span class="field-error"></span></div>
+<button class="btn btn-primary" type="submit" id="submit-btn" style="margin-top:14px;width:100%">Log in</button>
+</form>
+<p class="small" style="margin-top:12px"><a href="/pages/forgot-password.html">Forgot password?</a> · New patient? <a href="/pages/register.html">Create an account</a></p>
+<hr style="border:none;border-top:1px solid var(--border)">
+<p class="small muted">Demo accounts: <code>patient@demo.local / Patient123!</code>, <code>nurse@demo.local / Nurse123!</code>, <code>doctor@demo.local / Doctor123!</code>, <code>reception@demo.local / Reception123!</code>, <code>admin@demo.local / Admin123!</code></p>
+</div></main>
+<script type="module">
+import { api } from '/js/api/client.js';
+const params = new URLSearchParams(location.search);
+if (params.get('expired')) document.getElementById('expired').style.display = 'block';
+const form = document.getElementById('login-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email'), password = document.getElementById('password');
+  const errBox = document.getElementById('form-error'); errBox.style.display = 'none';
+  let ok = true;
+  if (!/.+@.+\..+/.test(email.value)) { email.setAttribute('aria-invalid','true'); email.closest('.field').querySelector('.field-error').textContent='Enter a valid email.'; ok=false; }
+  else { email.setAttribute('aria-invalid','false'); email.closest('.field').querySelector('.field-error').textContent=''; }
+  if (!password.value) { password.setAttribute('aria-invalid','true'); password.closest('.field').querySelector('.field-error').textContent='Password is required.'; ok=false; }
+  else { password.setAttribute('aria-invalid','false'); password.closest('.field').querySelector('.field-error').textContent=''; }
+  if (!ok) return;
+  const btn = document.getElementById('submit-btn'); btn.disabled = true; btn.textContent = 'Signing in…';
+  try {
+    const res = await api.post('/auth/login', { email: email.value.trim(), password: password.value });
+    sessionStorage.setItem('pf-user', JSON.stringify(res.data));
+    sessionStorage.removeItem('pf-redirected');
+    window.location.href = '/app.html';
+  } catch (err) {
+    errBox.textContent = err.message || 'Login failed.'; errBox.style.display = 'block';
+  } finally { btn.disabled = false; btn.textContent = 'Log in'; }
+});
+</script>
+</body>
+</html>
